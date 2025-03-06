@@ -1,3 +1,4 @@
+import Logo from "@/components/logo"
 import { ModeToggle } from "@/components/mode-toggle"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, BarChart3, Database, Lock, MessageSquare, Users } from "lucide-react"
@@ -8,10 +9,9 @@ export default function Home() {
     <div className="flex min-h-screen flex-col">
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-sm supports-backdrop-filter:bg-background/60">
         <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2 font-bold text-xl">
-            <Database className="h-5 w-5 text-primary" />
-            <span>BitQueue</span>
-          </div>
+          <Link href="/">
+            <Logo />
+          </Link>
           <nav className="hidden md:flex gap-6">
             <Link href="#features" className="text-muted-foreground hover:text-foreground transition-colors">
               Features
