@@ -1,4 +1,4 @@
-# BitQueue - README
+# BitQueue
 
 ## Introdução ao BitQueue
 O BitQueue é uma plataforma SAAS (Software as a Service) projetada para gerenciar filas de mensagens HTTP de forma simples, eficiente e acessível. Ele elimina a necessidade de usuários configurarem e manterem infraestrutura complexa, como sistemas como RabbitMQ ou Amazon SQS, sendo ideal para pequenos negócios, desenvolvedores independentes e startups que buscam uma solução gerenciada para comunicação assíncrona, como processamento de pedidos, notificações ou integração de sistemas.
