@@ -47,7 +47,7 @@ O BitQueue opera como um serviço gerenciado, onde os usuários interagem via um
 ## Stack Técnica
 O BitQueue utiliza uma stack moderna e escalável:
 - **Frontend:** Next.js com React.js e TypeScript, para uma interface responsiva e interativa, conforme discutido nos requisitos do frontend.
-- **Backend:** Go para o serviço principal, garantindo performance e eficiência, com possibilidade de usar Rust para otimizações futuras, conforme analisado.
+- **Backend:** Bun para o serviço principal, garantindo performance e eficiência, com possibilidade de usar Rust ou Go para otimizações futuras, conforme analisado.
 - **Banco de Dados:** PostgreSQL para persistência (tabelas para filas, mensagens, usuários) e Redis para caching e filas temporárias, como sugerido na implementação.
 - **Infraestrutura:** Hospedado na AWS, usando ECS/Fargate para escalabilidade, RDS para PostgreSQL, e ElastiCache para Redis, conforme o deploy planejado.
 
