@@ -1,7 +1,7 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
+import { Button } from "@/components/ui/button"
 import { ArrowRight, BarChart3, Database, Lock, MessageSquare, Users } from "lucide-react"
+import Link from "next/link"
 
 export default function Home() {
   return (
@@ -71,7 +71,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="flex flex-col items-center text-center p-6 bg-background rounded-lg shadow-xs">
                 <MessageSquare className="h-12 w-12 text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-2">Simple Queue Management</h3>
+                <h3 className="text-xl font-bold mb-2 text-white">Simple Queue Management</h3>
                 <p className="text-muted-foreground">
                   Create, configure, and manage queues with an intuitive interface. No infrastructure expertise
                   required.
@@ -79,14 +79,14 @@ export default function Home() {
               </div>
               <div className="flex flex-col items-center text-center p-6 bg-background rounded-lg shadow-xs">
                 <BarChart3 className="h-12 w-12 text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-2">Real-time Metrics</h3>
+                <h3 className="text-xl font-bold mb-2 text-white">Real-time Metrics</h3>
                 <p className="text-muted-foreground">
                   Monitor queue performance, message throughput, and system health with comprehensive dashboards.
                 </p>
               </div>
               <div className="flex flex-col items-center text-center p-6 bg-background rounded-lg shadow-xs">
                 <Lock className="h-12 w-12 text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-2">Secure & Reliable</h3>
+                <h3 className="text-xl font-bold mb-2 text-white">Secure & Reliable</h3>
                 <p className="text-muted-foreground">
                   Enterprise-grade security with encryption at rest and in transit. Highly available with redundancy
                   built-in.
@@ -94,21 +94,21 @@ export default function Home() {
               </div>
               <div className="flex flex-col items-center text-center p-6 bg-background rounded-lg shadow-xs">
                 <Users className="h-12 w-12 text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-2">Team Collaboration</h3>
+                <h3 className="text-xl font-bold mb-2 text-white">Team Collaboration</h3>
                 <p className="text-muted-foreground">
                   Invite team members, manage permissions, and collaborate on queue management.
                 </p>
               </div>
               <div className="flex flex-col items-center text-center p-6 bg-background rounded-lg shadow-xs">
                 <Database className="h-12 w-12 text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-2">Flexible Storage</h3>
+                <h3 className="text-xl font-bold mb-2 text-white">Flexible Storage</h3>
                 <p className="text-muted-foreground">
                   Configure message retention policies and storage options to meet your specific needs.
                 </p>
               </div>
               <div className="flex flex-col items-center text-center p-6 bg-background rounded-lg shadow-xs">
                 <ArrowRight className="h-12 w-12 text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-2">RESTful API</h3>
+                <h3 className="text-xl font-bold mb-2 text-white">RESTful API</h3>
                 <p className="text-muted-foreground">
                   Comprehensive API for seamless integration with your existing applications and workflows.
                 </p>
