@@ -1,10 +1,11 @@
 import { createId } from "@paralleldrive/cuid2";
+import type { Message, MessageStatus } from "../core/entities/message";
 
 export type MessageModelConstructorProps = {
   id?: string;
   queueId: string;
   content: string;
-  status: string;
+  status: MessageStatus;
   enqueuedAt?: Date;
   visibilityTimeoutAt?: string | null;
 }
@@ -12,15 +13,15 @@ export type MessageModelConstructorProps = {
 export type MessageModelCreateCommandProps = {
   queueId: string;
   content: string;
-  status: string;
+  status: MessageStatus;
   visibilityTimeoutAt?: string | null;
 }
 
-export class MessageModel {
+export class MessageModel implements Message {
   id: string;
   queueId: string;
   content: string;
-  status: string;
+  status: MessageStatus;
   enqueuedAt: Date;
   visibilityTimeoutAt: string | null;
 

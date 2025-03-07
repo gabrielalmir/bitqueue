@@ -1,4 +1,5 @@
 import { createId } from "@paralleldrive/cuid2";
+import type { Queue } from "../core/entities/queue";
 
 export type QueueModelConstructorProps = {
   id?: string;
@@ -12,7 +13,7 @@ export type QueueModelCreateCommandProps = {
   userId: string;
 }
 
-export class QueueModel {
+export class QueueModel implements Queue {
   id: string;
   name: string;
   userId: string;

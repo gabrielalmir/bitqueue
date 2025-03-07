@@ -2,7 +2,13 @@ export interface Message {
   id: string;
   queueId: string;
   content: string;
-  status: 'pending' | 'processed' | 'failed';
-  enqueuedAt: string;
-  visibilityTimeoutAt?: string;
+  status: MessageStatus;
+  enqueuedAt: Date;
+  visibilityTimeoutAt: string | null;
+}
+
+export enum MessageStatus {
+  PENDING = 'pending',
+  PROCESSED = 'processed',
+  FAILED = 'failed',
 }

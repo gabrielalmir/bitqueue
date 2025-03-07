@@ -1,4 +1,5 @@
 import { createId } from "@paralleldrive/cuid2";
+import type { User } from "../core/entities/user";
 
 export type UserModelConstructorProps = {
   id?: string;
@@ -12,7 +13,7 @@ export type UserModelCreateCommandProps = {
   password: string;
 }
 
-export class UserModel {
+export class UserModel implements User {
   id: string;
   email: string;
   password: string;
