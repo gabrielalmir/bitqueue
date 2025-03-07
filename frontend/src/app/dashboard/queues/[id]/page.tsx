@@ -1,17 +1,18 @@
 "use client"
 
-import { useState } from "react"
-import { useParams } from "next/navigation"
+import { NumberUtils } from "@/common/number"
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/components/ui/use-toast"
 import { ArrowLeft, BarChart3, Clock, MessageSquare, Pause, Play, RefreshCcw, Send, Trash2 } from "lucide-react"
 import Link from "next/link"
+import { useParams } from "next/navigation"
+import { useState } from "react"
 
 // Mock queue data
 const queueData = {
@@ -85,19 +86,19 @@ export default function QueueDetailPage() {
             <MessageSquare className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{queueData.messages.total.toLocaleString()}</div>
+            <div className="text-2xl font-bold">{NumberUtils.value(queueData.messages.total)}</div>
             <div className="mt-2 grid grid-cols-3 gap-2 text-xs">
               <div>
                 <p className="text-muted-foreground">Processed</p>
-                <p className="font-medium">{queueData.messages.processed.toLocaleString()}</p>
+                <p className="font-medium">{NumberUtils.value(queueData.messages.processed)}</p>
               </div>
               <div>
                 <p className="text-muted-foreground">Failed</p>
-                <p className="font-medium">{queueData.messages.failed.toLocaleString()}</p>
+                <p className="font-medium">{NumberUtils.value(queueData.messages.failed)}</p>
               </div>
               <div>
                 <p className="text-muted-foreground">Pending</p>
-                <p className="font-medium">{queueData.messages.pending.toLocaleString()}</p>
+                <p className="font-medium">{NumberUtils.value(queueData.messages.pending)}</p>
               </div>
             </div>
           </CardContent>
