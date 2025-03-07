@@ -1,5 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { Database } from 'bun:sqlite';
 import { env } from "../config/env";
 
-export const db = new PrismaClient({ datasourceUrl: env.DATABASE_URL });
-
+export const db = new Database(env.DATABASE_URL, { create: false });
