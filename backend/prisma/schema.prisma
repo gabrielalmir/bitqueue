@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Queue {
+  id        String    @id @default(cuid())
+  userId    String
+  name      String
+  createdAt DateTime  @default(now())
+  messages  Message[]
+
+  @@unique([userId, name])
+  @@index([userId])
+}
+
+model Message {
+  id                  String   @id @default(cuid())
+  queueId             String
+  queue               Queue    @relation(fields: [queueId], references: [id])
+  content             String
+  status              String   @default("pending")
+  enqueuedAt          DateTime @default(now())
+  visibilityTimeoutAt String?
+
+  @@index([queueId, status])
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+}
