@@ -14,7 +14,7 @@ O público-alvo inclui:
 A proposta de valor do BitQueue é oferecer simplicidade, acessibilidade e confiabilidade, com um modelo Freemium (grátis para até 10.000 mensagens/mês) e planos pagos a partir de US$ 20/mês, conforme discutido na análise de custos. Isso torna o serviço atraente para usuários com recursos limitados, diferentemente de competidores como Amazon SQS, que podem ser caros e complexos para esse público.
 
 ## Funcionalidades Principais
-Com base nas imagens e na análise de recursos, as funcionalidades principais do BitQueue incluem:
+A análise de recursos, as funcionalidades principais do BitQueue incluem:
 
 1. **Simple Queue Management**:
    - Criar, configurar e gerenciar filas com uma interface intuitiva, sem necessidade de expertise técnica. A imagem de "Create Queue" mostra campos como nome, descrição, tipo (Standard), tempo de visibilidade (30s padrão) e período de retenção (7 dias padrão), com validações claras (ex.: letras minúsculas, números, hífens).
