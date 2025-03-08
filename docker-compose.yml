@@ -3,11 +3,21 @@ name: bitqueue
 services:
   frontend:
     build:
-      context: ../frontend
+      context: ./frontend
     environment:
       NODE_ENV: production
     env_file:
-      - path: ../frontend/.env
+      - path: ./frontend/.env
         required: false
     ports:
       - 3000:3000
+  backend:
+    build:
+      context: ./backend
+    environment:
+      NODE_ENV: production
+    env_file:
+      - path: ./backend/.env
+        required: false
+    ports:
+      - 5000:5000
