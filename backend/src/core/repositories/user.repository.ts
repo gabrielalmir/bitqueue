@@ -1,4 +1,4 @@
-import type { User } from "@prisma/client";
+import type { User } from "../entities/user";
 
 export interface UserRepository {
   createUser(user: User): Promise<void>;
