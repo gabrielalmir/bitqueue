@@ -64,7 +64,7 @@ Para começar:
 - **Projeção:** Com 360 usuários no plano de US$ 20/mês, a receita mensal atinge US$ 7.200, cobrindo custos operacionais de US$ 7.200/mês.
 
 ## Informações de Contato
-Para suporte, dúvidas ou feedback, entre em contato em [support@bitqueue.com.br](mailto:support@bitqueue.com.br). Para mais detalhes, consulte a documentação no site oficial (a ser desenvolvido).
+Para suporte, dúvidas ou feedback, entre em contato em [gabr.almir@gmail.com](mailto:gabr.almir@gmail.com). Para mais detalhes, consulte a documentação no site oficial (a ser desenvolvido).
 
 ## Considerações Finais
 O Readme do BitQueue serve como um ponto de entrada para usuários e desenvolvedores, destacando sua proposta de valor (simplicidade, acessibilidade) e funcionalidades. Um detalhe inesperado é que, além de ser técnico, ele também atua como uma introdução amigável para usuários leigos, facilitando a adoção por PMEs e desenvolvedores sem expertise técnica. A análise de negócio sugere um mercado promissor, com competição moderada e custos iniciais viáveis (US$ 145.000 para desenvolvimento, 6 meses), apoiando o lançamento do MVP.
