@@ -1,18 +1,14 @@
-import type { Message } from "../core/entities/message";
-import type { Queue } from "../core/entities/queue";
-import type { QueueRepository } from "../core/repositories/queue.repository";
+import type { Message } from "../../domain/entities/message";
+import type { Queue } from "../../domain/entities/queue";
+import type { QueueRepository } from "../../domain/repositories/queue.repository";
 
 export class InMemoryQueueRepository implements QueueRepository {
     static readonly queues = new Array<Queue>();
     static readonly messages = new Array<Message>();
 
     async createQueue(queue: Queue): Promise<Queue> {
-        const queueCreated: Queue = await new Promise(() => {
-            InMemoryQueueRepository.queues.push(queue);
-            return queue;
-        });
-
-        return queueCreated;
+        InMemoryQueueRepository.queues.push(queue);
+        return queue;
     }
 
     async getQueues(userId: string): Promise<Queue[]> {
@@ -26,13 +22,8 @@ export class InMemoryQueueRepository implements QueueRepository {
             throw new Error("Queue doesn't exists");
         }
 
-
-        const messageCreated: Message = await new Promise(() => {
-            InMemoryQueueRepository.messages.push(message);
-            return message;
-        });
-
-        return messageCreated;
+        InMemoryQueueRepository.messages.push(message);
+        return message;
     }
 
     async dequeueMessage(queueId: string): Promise<Message | null> {

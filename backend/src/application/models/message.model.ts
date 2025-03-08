@@ -1,5 +1,6 @@
 import { createId } from "@paralleldrive/cuid2";
-import type { Message, MessageStatus } from "../core/entities/message";
+import type { Message, MessageStatus } from "../../domain/entities/message";
+import type { IdGeneratorPort } from "../generators/id.generator";
 
 export type MessageModelConstructorProps = {
   id?: string;
@@ -17,6 +18,24 @@ export type MessageModelCreateCommandProps = {
   visibilityTimeoutAt?: string | null;
 }
 
+export class MessageModelFactory {
+  constructor(private idGenerator: IdGeneratorPort) { }
+
+  create(props: MessageModelCreateCommandProps): MessageModel {
+    return new MessageModel({
+      id: this.idGenerator.generate(),
+      queueId: props.queueId,
+      content: props.content,
+      status: props.status,
+      visibilityTimeoutAt: props.visibilityTimeoutAt,
+    });
+  }
+
+  createWithProps(props: MessageModelConstructorProps): MessageModel {
+    return new MessageModel(props);
+  }
+}
+
 export class MessageModel implements Message {
   id: string;
   queueId: string;
@@ -32,9 +51,5 @@ export class MessageModel implements Message {
     this.status = props.status;
     this.enqueuedAt = props.enqueuedAt ?? new Date();
     this.visibilityTimeoutAt = props.visibilityTimeoutAt ?? null;
-  }
-
-  static create(props: MessageModelCreateCommandProps) {
-    return new MessageModel(props);
   }
 }

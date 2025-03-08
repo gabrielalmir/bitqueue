@@ -1,8 +1,9 @@
 import fastify from "fastify";
-import queueRoute from "./routes/queue.route";
+import { queueController } from "./application/config/deps";
+import { setupQueueRoutes } from "./infrastructure/routes/queue.route";
 
 const app = fastify({ logger: true });
 
-app.register(queueRoute);
+setupQueueRoutes(app, queueController);
 
 export { app };

@@ -1,5 +1,6 @@
 import { createId } from "@paralleldrive/cuid2";
-import type { User } from "../core/entities/user";
+import type { User } from "../../domain/entities/user";
+import type { IdGeneratorPort } from "../generators/id.generator";
 
 export type UserModelConstructorProps = {
   id?: string;
@@ -13,6 +14,22 @@ export type UserModelCreateCommandProps = {
   password: string;
 }
 
+export class UserModelFactory {
+  constructor(private idGenerator: IdGeneratorPort) { }
+
+  create(props: UserModelCreateCommandProps): UserModel {
+    return new UserModel({
+      id: this.idGenerator.generate(), // Usa a porta para gerar o ID
+      email: props.email,
+      password: props.password,
+    });
+  }
+
+  createWithProps(props: UserModelConstructorProps): UserModel {
+    return new UserModel(props);
+  }
+}
+
 export class UserModel implements User {
   id: string;
   email: string;
@@ -24,9 +41,5 @@ export class UserModel implements User {
     this.email = props.email;
     this.password = props.password;
     this.createdAt = props.createdAt ?? new Date();
-  }
-
-  static create(props: UserModelCreateCommandProps) {
-    return new UserModel(props);
   }
 }
