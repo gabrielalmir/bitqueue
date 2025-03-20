@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "frontend:build": "cd frontend && pnpm build",
     "frontend:dev": "cd frontend && pnpm dev",
     "backend:dev": "cd backend && pnpm dev"
   },
