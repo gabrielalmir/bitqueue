@@ -1,0 +1,11 @@
+{
+  "name": "bitqueue",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "frontend:dev": "cd frontend && pnpm dev",
+    "backend:dev": "cd backend && pnpm dev"
+  },
+  "author": "gabrielalmir",
+  "packageManager": "pnpm@10.6.5"
+}
