@@ -1,10 +1,10 @@
 "use client"
 
+import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+import { BarChart3, CreditCard, Database, Home, MessageSquare, Settings, Users, Wand2 } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { BarChart3, CreditCard, Database, Home, MessageSquare, Settings, Users } from "lucide-react"
 
 const navItems = [
   {
@@ -26,6 +26,11 @@ const navItems = [
     title: "Metrics",
     href: "/dashboard/metrics",
     icon: BarChart3,
+  },
+  {
+    title: "Automations",
+    href: "/dashboard/automations",
+    icon: Wand2,
   },
   {
     title: "Team",
