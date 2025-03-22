@@ -3,15 +3,15 @@
 import type React from "react"
 
 import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -29,14 +29,15 @@ import { useState } from "react"
 
 const currentPlan = {
   name: "Pro",
-  price: 29,
+  price: 49,
   billingCycle: "monthly",
   nextBillingDate: "2023-09-15",
   features: [
-    "Up to 20 queues",
-    "1 million messages per month",
-    "Advanced metrics & monitoring",
-    "Email support",
+    "100,000 messages included",
+    "Flexible usage ($0.001/msg over 100k)",
+    "Advanced automations",
+    "AI-powered features",
+    "Priority support",
     "Team access (up to 5 members)",
   ],
   usage: {
@@ -60,40 +61,45 @@ const currentPlan = {
 
 const plans = [
   {
-    id: "free",
-    name: "Free",
+    id: "free-trial",
+    name: "Free Trial",
     price: 0,
-    description: "For personal projects and learning",
-    features: ["Up to 3 queues", "10,000 messages per month", "Basic metrics", "Community support"],
+    description: "Experience BitQueue risk-free",
+    features: [
+      "Up to 5,000 messages",
+      "Full dashboard access",
+      "Basic queue management",
+      "Community support",
+    ],
     popular: false,
   },
   {
     id: "pro",
     name: "Pro",
-    price: 29,
+    price: 49,
     description: "For growing businesses",
     features: [
-      "Up to 20 queues",
-      "1 million messages per month",
-      "Advanced metrics & monitoring",
-      "Email support",
+      "100,000 messages included",
+      "Flexible usage ($0.001/msg over 100k)",
+      "Advanced automations",
+      "AI-powered features",
+      "Priority support",
       "Team access (up to 5 members)",
     ],
     popular: true,
   },
   {
-    id: "business",
-    name: "Business",
-    price: 99,
-    description: "For larger teams and high volume",
+    id: "enterprise",
+    name: "Enterprise",
+    price: 0,
+    description: "For larger organizations",
     features: [
-      "Up to 50 queues",
-      "10 million messages per month",
-      "Advanced metrics & monitoring",
-      "Priority email support",
-      "Team access (up to 15 members)",
+      "Unlimited messages",
       "Custom integrations",
-      "99.9% SLA",
+      "Advanced security features",
+      "Dedicated account manager",
+      "24/7 premium support",
+      "Custom SLA",
     ],
     popular: false,
   },
@@ -124,31 +130,31 @@ const invoices = [
   {
     id: "inv_1",
     date: "2023-08-15",
-    amount: 29.0,
+    amount: 49.0,
     status: "paid",
   },
   {
     id: "inv_2",
     date: "2023-07-15",
-    amount: 29.0,
+    amount: 49.0,
     status: "paid",
   },
   {
     id: "inv_3",
     date: "2023-06-15",
-    amount: 29.0,
+    amount: 49.0,
     status: "paid",
   },
   {
     id: "inv_4",
     date: "2023-05-15",
-    amount: 29.0,
+    amount: 49.0,
     status: "paid",
   },
   {
     id: "inv_5",
     date: "2023-04-15",
-    amount: 29.0,
+    amount: 49.0,
     status: "paid",
   },
 ]
@@ -419,7 +425,7 @@ export default function BillingPage() {
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <div>
-                        <span className="text-3xl font-bold">${getPrice(plan.price)}</span>
+                        <span className="text-3xl font-bold">${getPrice(plan.price as number)}</span>
                         <span className="text-muted-foreground">{billingCycle === "monthly" ? "/month" : "/year"}</span>
                       </div>
 
