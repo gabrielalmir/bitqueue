@@ -1030,7 +1030,7 @@ export default function Home() {
                     </blockquote>
                     <div className="flex items-center gap-4 mt-4">
                       <Image
-                        src="/screenshots/dashboard.jpg?height=50&width=50"
+                        src="/testimonials/3.png?height=50&width=50"
                         width={50}
                         height={50}
                         alt="Sarah Johnson"
@@ -1071,7 +1071,7 @@ export default function Home() {
                     </blockquote>
                     <div className="flex items-center gap-4 mt-4">
                       <Image
-                        src="/screenshots/dashboard.jpg?height=50&width=50"
+                        src="/testimonials/2.png?height=50&width=50"
                         width={50}
                         height={50}
                         alt="Michael Chen"
@@ -1112,7 +1112,7 @@ export default function Home() {
                     </blockquote>
                     <div className="flex items-center gap-4 mt-4">
                       <Image
-                        src="/screenshots/dashboard.jpg?height=50&width=50"
+                        src="/testimonials/4.png?height=50&width=50"
                         width={50}
                         height={50}
                         alt="Jessica Rodriguez"
