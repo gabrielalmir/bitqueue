@@ -56,12 +56,6 @@ export default function Home() {
             >
               Pricing
             </Link>
-            <Link
-              href="#faq"
-              className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium"
-            >
-              FAQ
-            </Link>
           </nav>
           <div className="flex items-center gap-4">
             <ModeToggle />
