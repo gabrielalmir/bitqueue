@@ -1,67 +1,88 @@
-# Requisitos Pendentes para o BitQueue
+# BitQueue Backend Development Plan
 
-O projeto BitQueue, um sistema de filas de mensagens em desenvolvimento com backend (Bun, Fastify, Prisma) e frontend (React), ainda possui uma série de requisitos funcionais e não funcionais a serem implementados. Abaixo está uma lista baseada no contexto atual e nas práticas comuns para sistemas como este.
+**As the sole developer, this document outlines the prioritized development process for BitQueue's backend. The focus is on delivering a functional queue system first, followed by integrations, user interfaces, and AI capabilities. Sprints are organized to ensure efficient progress, with all planned features implemented incrementally.**
 
-## Requisitos Funcionais Pendentes
+## Primary Features to Prioritize
+- **Queue Management**: Core system to enqueue and process tasks reliably.
+- **Integrations**: Email, Excel, Google Drive, WhatsApp, Slack.
+- **User Interface**: Dashboard for non-technical users.
+- **API**: HTTP endpoints for technical users.
+- **AI Integration**: Optional ChatGPT support via user-provided API key.
 
-- **Gerenciamento de Usuários Avançado**
-  - Autenticação com Refresh Tokens: Adicionar suporte a refresh tokens para sessões seguras e longas.
-  - Planos de Usuário (Freemium/Pro): Implementar lógica para limitar 10.000 mensagens/mês no Freemium e oferecer mais no plano Pro.
-  - Recuperação de Senha: Criar funcionalidade para redefinir senha via e-mail ou outro método.
+## Sprint Organization
+- **Duration**: Weekly or bi-weekly sprints for focused, achievable goals.
+- **Approach**: Build incrementally, starting with the core system, then adding user-facing features and integrations.
 
-- **Funcionalidades de Filas**
-  - Deleção de Filas: Adicionar endpoint para deletar filas, útil para limpeza ou gerenciamento.
-  - Reenfileiramento de Mensagens: Permitir reprocessar mensagens com falha (status 'failed') ou reenfileirá-las manualmente.
-  - Prioridade de Mensagens: Suporte a mensagens prioritárias para filas específicas.
+## Implementation Roadmap
 
-- **Métricas e Relatórios**
-  - Histórico de Métricas: Armazenar e exibir métricas históricas (ex.: mensagens processadas por dia/semana).
-  - Notificações de Limites: Alertar usuários quando estiverem próximos do limite de mensagens (ex.: 10.000/mês no Freemium).
+### Sprint 1: Core Queue System
+- **Goal**: Establish the foundational queue management system.
+- **Tasks**:
+  - [ ] Set up project with Node.js and TypeScript.
+  - [ ] Implement enqueue and process functions using AWS SQS.
+  - [ ] Design DynamoDB schema (e.g., `queue_id`, `message_id`, `status`, `payload`, `created_at`).
+  - [ ] Write unit tests for enqueue and process logic.
+- **Outcome**: A working queue system to handle tasks.
 
-- **Frontend Avançado**
-  - Visualização de Filas: Interface para listar filas, exibir mensagens pendentes/processadas e suas métricas.
-  - Gestão de Mensagens: Funcionalidade para enviar mensagens ou reprocessá-las diretamente pelo frontend.
-  - Dashboard de Usuário: Mostrar informações do plano, uso de mensagens e métricas em uma interface amigável.
+### Sprint 2: Basic API
+- **Goal**: Expose queue functionality via HTTP API.
+- **Tasks**:
+  - [ ] Set up a RESTful API with Fastify or Hono.
+  - [ ] Implement `POST /enqueue` and `GET /status/:id` endpoints.
+  - [ ] Add API key authentication.
+  - [ ] Generate OpenAPI/Swagger documentation.
+- **Outcome**: Developers can interact with BitQueue programmatically.
 
-- **Integração e API**
-  - Webhooks: Permitir que usuários configurem webhooks para receber notificações de eventos (ex.: mensagem processada).
-  - Documentação da API: Criar documentação (ex.: Swagger/OpenAPI) para facilitar o uso da API por terceiros.
+### Sprint 3: User Interface Basics
+- **Goal**: Create a simple dashboard for non-technical users.
+- **Tasks**:
+  - [ ] Set up a frontend with React or Vue.
+  - [ ] Build a dashboard to list queues and tasks.
+  - [ ] Add a form to configure basic automations (trigger + action).
+  - [ ] Connect frontend to backend API.
+- **Outcome**: Non-technical users can manage automations via UI.
 
-## Requisitos Não Funcionais Pendentes
+### Sprint 4: Integrations - Email and Excel
+- **Goal**: Add initial external integrations.
+- **Tasks**:
+  - [ ] Implement email sending via SMTP (e.g., SendGrid).
+  - [ ] Add Excel integration using Google Sheets API.
+  - [ ] Update UI to support email and Excel configuration.
+  - [ ] Write integration tests for both services.
+- **Outcome**: Users can automate email and Excel tasks.
 
-- **Escalabilidade e Performance**
-  - Migração para Banco Escalável: Substituir SQLite por PostgreSQL ou Redis para suportar mais usuários e mensagens.
-  - Testes de Carga: Garantir 100 mensagens/min por fila com múltiplos usuários simultâneos.
-  - Cache de Métricas: Implementar cache (ex.: Redis ou `Map`) para reduzir latência em métricas frequentes.
+### Sprint 5: Integrations - Google Drive and WhatsApp/Slack
+- **Goal**: Complete remaining integrations.
+- **Tasks**:
+  - [ ] Implement Google Drive integration for file operations.
+  - [ ] Add WhatsApp integration via Twilio API.
+  - [ ] Implement Slack integration using webhooks.
+  - [ ] Update UI to configure these integrations.
+- **Outcome**: Full integration suite available.
 
-- **Confiabilidade e Resiliência**
-  - Retry Mechanism: Adicionar retries automáticos para mensagens que falham no processamento.
-  - Dead Letter Queue (DLQ): Criar fila para mensagens que falham após várias tentativas, evitando bloqueios.
-  - Backup e Recuperação: Implementar backup periódico do banco para evitar perda de dados.
+### Sprint 6: AI Integration
+- **Goal**: Enable optional ChatGPT functionality.
+- **Tasks**:
+  - [ ] Add secure storage for user-provided ChatGPT API keys (e.g., AWS Secrets Manager).
+  - [ ] Implement OpenAI API calls for AI-enabled workflows.
+  - [ ] Update UI with AI toggle and prompt input.
+  - [ ] Ensure AI is optional and secure.
+- **Outcome**: Users can enhance automations with AI.
 
-- **Observabilidade**
-  - Tracing Distribuído: Adicionar tracing (ex.: OpenTelemetry) para monitorar o fluxo de mensagens.
-  - Alertas: Configurar alertas para falhas ou latências altas (ex.: com Prometheus/Grafana).
-  - Logs Estruturados: Estruturar logs em JSON para facilitar análise (ex.: com `pino` no Fastify).
+### Sprint 7: Polish and Testing
+- **Goal**: Refine and stabilize the system.
+- **Tasks**:
+  - [ ] Improve UI/UX based on initial testing.
+  - [ ] Add comprehensive tests (unit, integration, edge cases).
+  - [ ] Set up logging and monitoring with AWS CloudWatch.
+  - [ ] Optimize performance and cost (e.g., Lambda memory).
+- **Outcome**: A production-ready system.
 
-- **Segurança**
-  - Rate Limiting: Proteger a API contra abusos com rate limiting por usuário.
-  - Validação de Entrada no Frontend: Reforçar validação no frontend para evitar requisições inválidas.
-  - Segurança de Senhas: Garantir que `Bun.password` (bcrypt) use um custo alto o suficiente.
-
-- **Testes e Qualidade**
-  - Testes Unitários e de Integração: Cobrir mais casos nos usecases e na integração com o banco.
-  - Testes End-to-End (E2E): Criar testes para fluxos completos (ex.: criar fila, enviar mensagem, consumir).
-  - Testes no Frontend: Implementar testes unitários e de integração para componentes React.
-
-- **Manutenibilidade e Documentação**
-  - CI/CD: Configurar pipelines (ex.: GitHub Actions) para testes e deploy automáticos.
-  - Documentação do Código: Adicionar comentários e documentação detalhada.
-  - README e Wiki: Atualizar o README com instruções e criar uma wiki no GitHub.
-
-## Considerações
-
-- **Escopo do MVP**: Priorizar gerenciamento de usuários (refresh tokens, planos), métricas históricas e uma interface frontend funcional para atender às necessidades básicas.
-- **Longo Prazo**: Focar na migração para um banco escalável e observabilidade avançada (tracing, alertas) para suportar mais usuários e mensagens.
-
-Se houver mais detalhes sobre o progresso atual, a lista pode ser refinada!
+### Sprint 8: Deployment and Documentation
+- **Goal**: Launch and document the application.
+- **Tasks**:
+  - [ ] Deploy backend to AWS Lambda or ECS.
+  - [ ] Deploy frontend to Vercel or AWS Amplify.
+  - [ ] Write user guides (API and UI).
+  - [ ] Set up feedback mechanism (e.g., email form).
+- **Outcome**: BitQueue is live and user-ready.
