@@ -140,7 +140,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent"></div>
               </div>
               {/* Floating Elements */}
-              <div className="absolute -top-6 -right-6 bg-primary/10 p-4 rounded-lg border shadow-lg">
+              <div className="absolute -top-6 -right-6 bg-secondary/90 p-4 rounded-lg border shadow-lg">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="h-5 w-5 text-primary" />
                   <span className="font-medium">Task Completed</span>
