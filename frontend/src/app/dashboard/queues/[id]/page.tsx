@@ -14,7 +14,6 @@ import Link from "next/link"
 import { useParams } from "next/navigation"
 import { useState } from "react"
 
-// Mock queue data
 const queueData = {
   id: "q_1",
   name: "order-processing",
