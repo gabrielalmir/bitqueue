@@ -32,3 +32,42 @@ I evaluated the trade-offs between using Lambda (for Node.js, Java, and Go) and 
 
 - **EC2 (Java)**:
   Hosting Java on EC2 with a t3.micro instance provides a fixed cost of $7.59/month, which is advantageous at high scale (e.g., 50M messages) where it becomes cost-competitive with Java on Lambda ($821.42 vs. $821.80). I also value that EC2 eliminates cold starts, ensuring consistent latency (~200 ms per request), which is better for user experience in high-traffic scenarios. However, this approach requires me to manage the infrastructure, including patching, monitoring, and scaling. At 50M messages, I would need to add Auto Scaling and an Application Load Balancer (ALB, ~$16.20/month + $0.008/GB), which increases costs and complexity. Additionally, the fixed cost of EC2 makes it less economical for low usage, where Lambda shines.
+
+## Cloud Provider Cost Analysis: AWS vs. Azure vs. Google Cloud vs. Cloudflare Workers (Using Go - aka. lowest cost)
+
+### Cost Comparison (USD/month)
+
+| Messages/Month | AWS (Go Lambda) | Azure (Go Functions) | Google Cloud (Go Functions) | Cloudflare Workers (Go) |
+|----------------|-----------------|----------------------|-----------------------------|-------------------------|
+| **0-10**       | $2.17           | $2.17                | $2.17                       | $2.17                   |
+| **10k**        | $2.17           | $2.17                | $2.17                       | $2.17                   |
+| **50k**        | $2.29           | $2.29                | $2.27                       | $2.25                   |
+| **100k**       | $2.35           | $2.35                | $2.28                       | $2.25                   |
+| **1M**         | $3.81           | $3.81                | $2.39                       | $2.25                   |
+| **50M**        | $603.84         | $603.84              | $597.89                     | $586.74                 |
+
+### My Analysis of Cloud Providers
+
+When I compared the costs across cloud providers using Go as the backend implementation, I noticed distinct patterns:
+
+- **Low to Medium Usage (0-10 to 1M messages/month)**:
+  I found that Cloudflare Workers is the most cost-effective option in this range, keeping costs at $2.25 even up to 1M messages, thanks to its generous free tier (3M requests/month) and lack of duration-based charges. Google Cloud Functions follows closely at $2.17-$2.39, benefiting from a low per-GB-second cost ($0.0000025) and a free tier of 2M invocations. AWS Lambda and Azure Functions are tied at $2.17-$3.81, as they share similar pricing models ($0.00001667 per GB-second) and free tiers (1M executions, 400k GB-seconds), but their higher compute costs make them slightly more expensive than Google Cloud Functions at 1M messages.
+
+- **High Scale (50M messages/month)**:
+  At this scale, Cloudflare Workers remains the cheapest at $586.74, thanks to its flat pricing model ($0.30 per 1M requests) and extremely fast execution (50 ms). Google Cloud Functions is close at $597.89, benefiting from its low compute cost and per-second billing. AWS Lambda and Azure Functions are tied at $603.84, slightly more expensive due to their higher per-GB-second pricing. The gap narrows at this scale, but Cloudflare Workers and Google Cloud Functions still offer better savings.
+
+### Documenting My Trade-offs: AWS vs. Azure vs. Google Cloud vs. Cloudflare Workers
+
+I evaluated the trade-offs between the cloud providers to understand their impact on BitQueue:
+
+- **AWS Lambda (Go)**:
+  I value AWS Lambda for its robust ecosystem and seamless integration with other AWS services like SQS, DynamoDB, and CloudWatch, which are central to BitQueue's architecture. It offers good performance with Go (150 ms execution, ~1.5s cold starts) and a decent free tier (1M executions, 400k GB-seconds). However, its higher compute cost ($0.00001667 per GB-second) makes it slightly more expensive at scale ($603.84 at 50M messages), and I’m concerned about potential vendor lock-in due to the tight integration with AWS services.
+
+- **Azure Functions (Go)**:
+  Azure Functions provides a similar experience to AWS Lambda, with the same pricing model ($0.00001667 per GB-second) and free tier (1M executions, 400k GB-seconds), resulting in identical costs ($603.84 at 50M messages). I appreciate Azure’s integration with tools like Azure Monitor and Cosmos DB, but I found its ecosystem less mature for serverless workloads compared to AWS. Cold starts (~1.5s) and execution time (150 ms) are on par with AWS, but I’d need to adapt BitQueue’s architecture to Azure-specific services, which could introduce complexity.
+
+- **Google Cloud Functions (Go)**:
+  I’m impressed with Google Cloud Functions’ cost efficiency, especially at scale ($597.89 at 50M messages), due to its lower compute cost ($0.0000025 per GB-second) and generous free tier (2M invocations). It matches AWS and Azure in performance (150 ms execution, ~1.5s cold starts), but I found its ecosystem more developer-friendly for serverless, with tools like Firestore and BigQuery that could be useful for BitQueue. However, I’d need to refactor parts of the system (e.g., replace SQS with Pub/Sub), and Google Cloud’s smaller market share makes me cautious about long-term support.
+
+- **Cloudflare Workers (Go)**:
+  Cloudflare Workers stands out for its edge computing model, offering near-zero cold starts (~0.1s) and the fastest execution (50 ms), which keeps costs the lowest ($586.74 at 50M messages). I like its flat pricing ($0.30 per 1M requests) and free tier (3M requests/month), but I’m concerned about its limitations: Workers has a smaller runtime (no direct equivalent to SQS or DynamoDB), so I’d need to use external services like Cloudflare KV or third-party queues, which could add complexity and cost. Additionally, its focus on edge computing might not fully support BitQueue’s need for heavy backend processing.
