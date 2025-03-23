@@ -2,7 +2,7 @@
 
 ## Node.js (Lambda), Java (Lambda) vs Java (EC2)
 
-## Cost Comparison (USD/month)
+### Cost Comparison (USD/month)
 
 | Messages/Month | Node.js (Lambda) | Java (Lambda) | Java (EC2) |
 |----------------|------------------|---------------|------------|
@@ -13,7 +13,7 @@
 | **1M**         | $4.02            | $7.36         | $11.39     |
 | **50M**        | $614.09          | $821.80       | $821.42    |
 
-## My Analysis
+### My Analysis
 
 When I analyzed the costs, I noticed distinct patterns across the usage scenarios:
 
@@ -23,7 +23,7 @@ When I analyzed the costs, I noticed distinct patterns across the usage scenario
 - **High Scale (50M messages/month)**:
   At this scale, Node.js on Lambda remains the cheapest at $614.09, thanks to its efficiency. Java on Lambda costs $821.80, which is higher due to the increased memory and execution time. Interestingly, Java on EC2 becomes competitive at $821.42, as the fixed EC2 cost ($7.59) becomes a small fraction of the total, but Node.js on Lambda still offers better savings.
 
-## Documenting My Trade-offs: Lambda vs. EC2
+### Documenting My Trade-offs: Lambda vs. EC2
 
 I evaluated the trade-offs between using Lambda (for both Node.js and Java) and hosting Java on EC2 to decide the best approach for BitQueue:
 
