@@ -144,7 +144,7 @@ When I analyzed the costs of the queuing options and their impact on the total s
 - **High Scale (50M messages/month)**:
   At this scale, SQS results in a total system cost of $606.34, with the queuing cost at $19.60 after the free tier. RabbitMQ on EC2 brings the total to $621.42, with the fixed EC2 cost ($7.59) being a small fraction of the total, but still higher than SQS. Redis (ElastiCache) is the most expensive at $631.23, as its fixed cost ($9.49) plus data transfer fees ($35) outweighs the others. SQS remains the most cost-effective, but the gap narrows at this scale.
 
-### Documenting My Trade-offs: SQS vs. Redis vs. RabbitMQ
+### SQS vs. Redis vs. RabbitMQ
 
 I evaluated the trade-offs between AWS SQS, Redis (via ElastiCache), and RabbitMQ (on EC2) to understand their impact on BitQueue:
 
