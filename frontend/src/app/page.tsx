@@ -16,6 +16,7 @@ import {
   MessageSquare,
   Play,
   Sparkles,
+  TriangleAlertIcon,
   Workflow,
   Zap,
 } from "lucide-react"
@@ -89,9 +90,14 @@ export default function Home() {
 
           <div className="container px-4 md:px-6 flex flex-col lg:flex-row py-16 md:py-24 lg:py-32 gap-8 lg:gap-16 items-center">
             <div className="flex flex-col gap-6 lg:w-1/2">
-              <Badge className="w-fit" variant="outline">
-                Automation Made Simple
-              </Badge>
+              <div className="flex gap-2">
+                <Badge className="w-fit" variant="outline">
+                  Automation Made Simple
+                </Badge>
+                <Badge className="w-fit bg-amber-500/10 text-amber-500 border-amber-500/20" variant="outline">
+                  <TriangleAlertIcon /> In Development
+                </Badge>
+              </div>
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
                 Automate Your Workflows <span className="text-primary">Without Code</span>
               </h1>
