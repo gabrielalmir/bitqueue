@@ -1,5 +1,9 @@
 # Trade-offs for BitQueue
 
+## Disclaimer
+
+I want to note that these trade-offs and analyses for BitQueue are being used as part of my portfolio to demonstrate my ability to evaluate and compare different architectural approaches, technologies, and cloud providers. The cost calculations and decisions reflect my learning process and may not represent production-ready solutions.
+
 ## Estimated Values Disclaimer
 
 The cost values presented in this document are estimated based on current pricing models and usage patterns. These estimates are intended to provide a comparative analysis and may not reflect the exact costs incurred in a real-world scenario. As cloud provider pricing and service offerings evolve, these estimates will be periodically reviewed and updated to ensure accuracy. Any significant deviations or corrections will be documented and incorporated into future analyses to maintain the relevance and reliability of this cost comparison.
