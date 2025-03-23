@@ -2,6 +2,8 @@
 
 BitQueue is a powerful automation platform designed to help businesses of all sizes streamline their workflows, improve efficiency, and reduce manual tasks. With BitQueue, you can easily set up automations, integrate with your existing systems, and monitor performance in real-time.
 
+![Infrastructure](./docs/bitqueue.png)
+
 ## Key Business Benefits
 
 - **Automate Repetitive Tasks**: Save time and reduce errors by automating routine tasks such as form submissions, email notifications, and data updates.
