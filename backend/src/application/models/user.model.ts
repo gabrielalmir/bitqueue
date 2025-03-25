@@ -15,7 +15,7 @@ export type UserModelCreateCommandProps = {
 }
 
 export class UserModelFactory {
-  constructor(private idGenerator: IdGeneratorPort) { }
+  constructor(private readonly idGenerator: IdGeneratorPort) { }
 
   create(props: UserModelCreateCommandProps): UserModel {
     return new UserModel({

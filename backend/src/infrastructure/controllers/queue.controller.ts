@@ -7,10 +7,10 @@ import type { Validation } from "../../domain/validation/validation";
 
 export class QueueController {
     constructor(
-        private service: QueueService,
-        private createQueueValidator: Validation<CreateQueueInput>,
-        private enqueueMessageValidator: Validation<EnqueueMessageInput>,
-        private dequeueMessageValidator: Validation<DenqueueMessageInput>
+        private readonly service: QueueService,
+        private readonly createQueueValidator: Validation<CreateQueueInput>,
+        private readonly enqueueMessageValidator: Validation<EnqueueMessageInput>,
+        private readonly dequeueMessageValidator: Validation<DenqueueMessageInput>
     ) { }
 
     async createQueue(ctx: HttpContext): Promise<any> {

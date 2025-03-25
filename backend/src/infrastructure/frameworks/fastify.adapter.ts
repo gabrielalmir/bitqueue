@@ -3,8 +3,8 @@ import type { HttpContext } from "../../domain/contexts/http.context";
 
 export class FastifyAdapter implements HttpContext {
     constructor(
-        private request: FastifyRequest,
-        private reply: FastifyReply
+        private readonly request: FastifyRequest,
+        private readonly reply: FastifyReply
     ) { }
 
     async getBody(): Promise<any> {
