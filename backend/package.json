@@ -24,7 +24,7 @@
     "@paralleldrive/cuid2": "^2.2.2",
     "@prisma/client": "^5.10.2",
     "bcryptjs": "^2.4.3",
-    "fastify": "^5.2.1",
+    "fastify": "^5.3.1",
     "fastify-jwt": "^4.2.0",
     "fastify-zod": "^1.4.0",
     "jsonwebtoken": "^9.0.2",
